@@ -1,17 +1,18 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Text from './Text';
 
 const RepositoryItem = (props) => {
   const { fullName, description, language, stargazersCount, forksCount, reviewCount, ratingAverage } = props.item;
 
   return (
     <View>
-      <Text>Full name: {fullName}</Text>
-      <Text>Description: {description}</Text>
-      <Text>Language: {language}</Text>
-      <Text>Stars: {stargazersCount}</Text>
-      <Text>Forks: {forksCount}</Text>
-      <Text>Reviews: {reviewCount}</Text>
-      <Text>Rating: {ratingAverage}</Text>
+      <Text fontWeight='bold' fontSize='subheading'>Full name: {fullName}</Text>
+      <Text color='textSecondary'>Description: {description}</Text>
+      <Text color='textSecondary'>Language: {language}</Text>
+      <Text color='textSecondary'>Stars: {stargazersCount}</Text>
+      <Text color='textSecondary'>Forks: {forksCount}</Text>
+      <Text color='textSecondary'>Reviews: {reviewCount}</Text>
+      <Text color='textSecondary'>Rating: {ratingAverage}</Text>
     </View>
   );
 };
