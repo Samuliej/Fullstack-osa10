@@ -54,7 +54,6 @@ const repositories = [
     reviewCount: 0,
     ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4',
   },
-
 ];
 
 const renderItem = ({item}) => {

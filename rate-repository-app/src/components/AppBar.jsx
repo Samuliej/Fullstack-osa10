@@ -1,4 +1,4 @@
-import { View, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import Text from './Text';
 import theme from '../theme';
@@ -32,8 +32,10 @@ const AppBar = () => {
 
   return (
     <View style={styles.container}>
-      <AppBarTab text='Repositories' onPress={() => navigate('/')} />
-      <AppBarTab text='Sign in' onPress={() => navigate('/sign-in')} />
+      <ScrollView horizontal>
+        <AppBarTab text='Repositories' onPress={() => navigate('/')} />
+        <AppBarTab text='Sign in' onPress={() => navigate('/sign-in')} />
+      </ScrollView>
     </View>
   );
 };
