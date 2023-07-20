@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import { useField } from "formik";
 
 import TextInput from "./TextInput";
-import Text from "./Text";
 
 const styles = StyleSheet.create({
   container: {
@@ -14,11 +13,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 10,
     fontSize: 16,
-    marginBottom: 16
+    marginTop:16
   },
   errorText: {
-    marginTop: 5,
-    color: "red",
+    marginTop: 3,
+    color: "red"
   },
 });
 
@@ -30,14 +29,13 @@ const FormikTextInput = ({ name, secureTextEntry, ...props }) => {
     <>
       <TextInput
         secureTextEntry={secureTextEntry}
-        style={[styles.input, showError && { borderColor: "red" }]}
+        style={[styles.input]}
         onChangeText={value => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
-        error={showError}
+        error={showError ? meta.error : null}
         {...props}
       />
-      {showError && <Text style={styles.errorText}>{meta.error}</Text>}
     </>
   );
 };

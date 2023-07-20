@@ -17,6 +17,10 @@ const theme = {
     normal: '400',
     bold: '700',
   },
+  errorText: {
+    marginTop: 3,
+    color: "red"
+  },
 };
 
 export default theme;
