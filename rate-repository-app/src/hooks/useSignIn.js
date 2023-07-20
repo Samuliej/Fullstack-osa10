@@ -5,12 +5,10 @@ const useSignIn = () => {
   const [mutate, result] = useMutation(AUTHENTICATE);
 
   const signIn = async ({ username, password }) => {
-
-    console.log(`Values at useSignIN: ${username} ${password}`);
-
     try {
       await mutate( {variables: { username, password } });
-      console.log('usesignin', result);
+      // Should have been like this in 10.13, but correct now
+      return result;
     } catch (error) {
       console.log(error);
     }
