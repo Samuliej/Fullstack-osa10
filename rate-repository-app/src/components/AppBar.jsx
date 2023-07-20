@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   containerItem: {
     paddingHorizontal: 5
-  }
+  },
 });
 
 const AppBarTab = (props) => {
