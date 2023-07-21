@@ -1,50 +1,17 @@
 import { View, Image, StyleSheet } from 'react-native';
-import Text from './Text';
+import Text from '../Text';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
-  flexContainer: {
-    flexDirection: 'column',
-    paddingBottom: 10
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  logo: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
-    marginLeft: 10,
-    borderRadius: 5
-  },
-  fullName: {
-    fontWeight: 'bold',
-    marginTop: 15
-  },
-  language: {
-    marginTop: 5,
-    alignSelf: 'flex-start',
-    borderRadius: 5,
-    backgroundColor: 'dodgerblue',
-    paddingVertical: 2,
-    paddingHorizontal: 6,
-    color: 'white'
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 5
-  },
-  infoItem: {
-    alignItems: 'center',
-  },
-  infoNumber: {
-    fontWeight: 'bold'
-  },
-  descriptionText: {
-    flexShrink: 1
-  }
+  flexContainer: theme.flexContainer,
+  headerContainer: theme.headerContainer,
+  logo: theme.logo,
+  fullName: theme.fullName,
+  language: theme.language,
+  infoContainer: theme.infoContainer,
+  infoItem: theme.infoItem,
+  infoNumber: theme.infoNumber,
+  descriptionText: theme.descriptionText
 });
 
 // Helper function to format the numbers to the desired format

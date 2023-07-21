@@ -1,7 +1,7 @@
 import Constants from 'expo-constants';
 import { StyleSheet, View } from 'react-native';
-import RepositoryList from './RepositoryList';
-import AppBar from './AppBar';
+import RepositoryList from './RepositoryList/index';
+import AppBar from './AppBar/index';
 import { Route, Routes, Navigate } from 'react-router-native';
 import SignIn from './SignIn';
 

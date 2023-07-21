@@ -1,34 +1,16 @@
-import { View, StyleSheet, Pressable, ScrollView } from 'react-native';
-import Constants from 'expo-constants';
-import Text from './Text';
-import theme from '../theme';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import Text from '../Text';
+import AppBarTab from './AppBarTab';
+import theme from '../../theme';
 import { useNavigate } from 'react-router-native';
 import { useApolloClient, useQuery } from '@apollo/client';
-import { ME } from '../graphql/queries';
-import { useAuthStorage } from '../hooks/useAuthStorage';
+import { ME } from '../../graphql/queries';
+import { useAuthStorage } from '../../hooks/useAuthStorage';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.colors.primary,
-    paddingBottom: 16,
-    paddingLeft: 16,
-    flexDirection: 'row'
-  },
-  containerItem: {
-    paddingHorizontal: 5
-  },
+  container: theme.container
 });
 
-const AppBarTab = (props) => {
-  return (
-    <Pressable
-      style={styles.containerItem}
-      onPress={props.onPress}>
-    <Text fontSize='subheading' color='appBar'>{props.text}</Text>
-  </Pressable>
-  );
-};
 
 const AppBar = () => {
   const authStorage = useAuthStorage();

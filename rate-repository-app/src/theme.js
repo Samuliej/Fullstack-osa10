@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+import Constants from 'expo-constants';
 
 const theme = {
   colors: {
@@ -26,6 +27,63 @@ const theme = {
   errorText: {
     marginTop: 3,
     color: "red"
+  },
+  container: {
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#363640',
+    paddingBottom: 16,
+    paddingLeft: 16,
+    flexDirection: 'row'
+  },
+  containerItem: {
+    paddingHorizontal: 5
+  },
+  flexContainer: {
+    flexDirection: 'column',
+    paddingBottom: 10
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
+    marginLeft: 10,
+    borderRadius: 5
+  },
+  fullName: {
+    fontWeight: 'bold',
+    marginTop: 15
+  },
+  language: {
+    marginTop: 5,
+    alignSelf: 'flex-start',
+    borderRadius: 5,
+    backgroundColor: 'dodgerblue',
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    color: 'white'
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 5
+  },
+  infoItem: {
+    alignItems: 'center',
+  },
+  infoNumber: {
+    fontWeight: 'bold'
+  },
+  descriptionText: {
+    flexShrink: 1
+  },
+  separator: {
+    height: 10,
+    backgroundColor: '#DCDCDC'
   },
 };
 
