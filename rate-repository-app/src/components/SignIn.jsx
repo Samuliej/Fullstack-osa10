@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import Text from "./Text";
 import * as yup from 'yup';
 import useSignIn from "../hooks/useSignIn";
-import AuthStorage from "../utils/authStorage";
+import { useNavigate } from "react-router";
 
 const initialValues = {
   username: '',
@@ -42,14 +42,17 @@ const validationSchema = yup.object().shape({
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const navigate = useNavigate();
 
   const handleSignIn = async (values) => {
     const { username, password } = values;
 
     try {
       const { data } = await signIn({ username, password });
-      const authStorage = new AuthStorage('authToken');
-      await authStorage.setAccessToken(data.authenticate.accessToken);
+      if (data) {
+        console.log('sign in success');
+        navigate('/');
+      }
     } catch (error) {
       console.log(error);
     }

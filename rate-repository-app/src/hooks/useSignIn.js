@@ -1,13 +1,17 @@
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import { AUTHENTICATE } from "../graphql/mutations";
+import { useAuthStorage } from "./useAuthStorage";
 
 const useSignIn = () => {
+  const authStorage = useAuthStorage();
+  const apolloClient = useApolloClient();
   const [mutate, result] = useMutation(AUTHENTICATE);
 
   const signIn = async ({ username, password }) => {
     try {
-      await mutate( {variables: { username, password } });
-      // Should have been like this in 10.13, but correct now
+      const { data } = await mutate( {variables: { username, password } });
+      await authStorage.setAccessToken(data.authenticate.accessToken);
+      apolloClient.resetStore();
       return result;
     } catch (error) {
       console.log(error);
