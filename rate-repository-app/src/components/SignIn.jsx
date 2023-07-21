@@ -41,16 +41,18 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn = () => {
-  const [signIn] = useSignIn();
+  const [signIn, result] = useSignIn();
   const navigate = useNavigate();
 
   const handleSignIn = async (values) => {
     const { username, password } = values;
-
     try {
-      const { data } = await signIn({ username, password });
-      if (data) {
-        console.log('sign in success');
+      /**
+       * Using result from useSignIn hook fixed a bug, that when signing in, the AppBar
+       * updated correctly but the redirection only happened when pressing sign in the second time.
+       */
+      await signIn({ username, password });
+      if (result) {
         navigate('/');
       }
     } catch (error) {
