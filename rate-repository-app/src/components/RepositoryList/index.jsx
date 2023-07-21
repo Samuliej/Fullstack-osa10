@@ -4,7 +4,10 @@ import theme from '../../theme';
 import useRepositories from '../../hooks/useRepositories';
 
 const styles = StyleSheet.create({
-  separator: theme.separator
+  separator: {
+    height: 10,
+    backgroundColor: theme.colors.appBackground
+  },
 });
 
 const renderItem = ({item}) => {
@@ -13,12 +16,10 @@ const renderItem = ({item}) => {
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryList = () => {
-  const { repositories } = useRepositories();
-
+export const RepositoryListContainer = ({ repositories }) => {
   const respositoryNodes = repositories
-    ? repositories.map(edge => edge.node)
-    : [];
+  ? repositories.map((edge) => edge.node)
+  : [];
 
   return (
     <FlatList
@@ -27,6 +28,15 @@ const RepositoryList = () => {
       renderItem={renderItem}
     />
   );
+};
+
+const RepositoryList = () => {
+  const { repositories } = useRepositories();
+  /**
+   * I don't know why, but I can't pass just repositories,
+   * it will crash to repositories.edges.map saying that repositories is undefined
+   */
+  return <RepositoryListContainer repositories={repositories.edges} />;
 };
 
 export default RepositoryList;

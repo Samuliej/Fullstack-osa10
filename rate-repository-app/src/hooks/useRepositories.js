@@ -14,7 +14,7 @@ const useRepositories = () => {
     return { repositories: [] };
   }
 
-  const repositories = data ? data.repositories.edges : [];
+  const repositories = data ? data.repositories : [];
 
   return { repositories };
 };

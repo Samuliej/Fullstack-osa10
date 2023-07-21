@@ -42,18 +42,19 @@ const RepositoryItemImageTitleDescription = (props) => {
   const { styles } = props;
 
   return (
-    <View style={styles.headerContainer}>
-    <Image
-      style={styles.logo}
-      source={{
-        uri: props.ownerAvatarUrl,
-      }}
-    />
-    <View>
-      <Text style={styles.fullName}>{props.fullName}</Text>
-      <Text color='textSecondary'>{props.description}</Text>
-      <Text style={styles.language} color='textSecondary'>{props.language}</Text>
-    </View>
+    <View testID='imageTitleDescription' style={styles.headerContainer}>
+      <Image
+        testID='image'
+        style={styles.logo}
+        source={{
+          uri: props.ownerAvatarUrl,
+        }}
+      />
+      <View>
+        <Text testID='fullName' style={styles.fullName}>{props.fullName}</Text>
+        <Text testID='description' color='textSecondary'>{props.description}</Text>
+        <Text testID='language' style={styles.language} color='textSecondary'>{props.language}</Text>
+      </View>
   </View>
   );
 };
@@ -64,19 +65,19 @@ const RepositoryItemInfo = (props) => {
   return (
     <View style={styles.infoContainer}>
     <View style={styles.infoItem}>
-      <Text style={styles.infoNumber}>{formatNumber(props.stargazersCount)}</Text>
+      <Text testID='stargazersCount' style={styles.infoNumber}>{formatNumber(props.stargazersCount)}</Text>
       <Text color='textSecondary'>Stars</Text>
     </View>
     <View style={styles.infoItem}>
-      <Text style={styles.infoNumber}>{formatNumber(props.forksCount)}</Text>
+      <Text testID='forksCount' style={styles.infoNumber}>{formatNumber(props.forksCount)}</Text>
       <Text color='textSecondary'>Forks</Text>
     </View>
     <View style={styles.infoItem}>
-      <Text style={styles.infoNumber}>{formatNumber(props.reviewCount)}</Text>
+      <Text testID='reviewCount' style={styles.infoNumber}>{formatNumber(props.reviewCount)}</Text>
       <Text color='textSecondary'>Reviews</Text>
     </View>
     <View style={styles.infoItem}>
-      <Text style={styles.infoNumber}>{props.ratingAverage}</Text>
+      <Text testID='ratingAverage' style={styles.infoNumber}>{props.ratingAverage}</Text>
       <Text color='textSecondary'>Rating</Text>
     </View>
   </View>
@@ -99,7 +100,7 @@ const RepositoryItem = (props) => {
   const splitDescription = splitText(description, 40);
 
   return (
-    <View style={styles.flexContainer}>
+    <View testID='repositoryItem' style={styles.flexContainer}>
       <RepositoryItemImageTitleDescription
         styles={styles}
         ownerAvatarUrl={ownerAvatarUrl}
