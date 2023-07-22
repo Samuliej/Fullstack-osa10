@@ -98,6 +98,13 @@ const theme = {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold'
+  },
+  platformStyle: {
+    color: Platform.select({
+      android: 'green',
+      ios: 'blue',
+      default: 'blue'
+    })
   }
 };
 

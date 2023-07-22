@@ -5,14 +5,11 @@ import useRepositories from '../../hooks/useRepositories';
 import { useNavigate } from 'react-router-native';
 
 const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-    backgroundColor: theme.colors.appBackground
-  },
+  separator: theme.separator
 });
 
 const Item = ({ renderItem, item, navigate }) => {
-  return renderItem({ item, navigate }); // Call the renderItem function and pass navigate
+  return renderItem({ item, navigate });
 };
 
 const renderItem = ({ item, navigate }) => {

@@ -31,3 +31,17 @@ export const splitText = (text, maxLength) => {
   }
   return text;
 };
+
+export const parseDate = (date) => {
+  const parts = date.slice(0, 10).split('-');
+  let formattedDate = '';
+
+  for (let i = parts.length-1; i >= 0; i --) {
+    if (i === 0) { formattedDate = formattedDate + parts[i];
+    } else {
+      formattedDate = formattedDate + parts[i] + '.';
+    }
+  }
+
+  return formattedDate;
+};

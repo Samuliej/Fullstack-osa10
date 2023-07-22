@@ -1,9 +1,9 @@
-import RepositoryItem from "./RepositoryItem/index";
-import Text from "../Text";
+import Text from "../../Text";
 import { useParams } from 'react-router-native';
 import { View, StyleSheet } from "react-native";
-import theme from "../../theme";
-import useRepository from "../../hooks/useRepository";
+import theme from "../../../theme";
+import useRepository from "../../../hooks/useRepository";
+import ReviewList from "./ReviewList";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 16,
   },
+  separator: theme.separator,
 });
 
 const SingleRepositoryView = () => {
@@ -36,10 +37,11 @@ const SingleRepositoryView = () => {
   return (
     <View style={styles.container}>
       <View>
-        <RepositoryItem item={repository.data} />
+        <ReviewList repository={repository}/>
       </View>
     </View>
   );
 };
+
 
 export default SingleRepositoryView;
