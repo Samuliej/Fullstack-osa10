@@ -22,6 +22,8 @@ const SingleRepositoryView = () => {
   const { id } = useParams();
   const repository = useRepository(id);
 
+  console.log(id);
+
   if (repository.loading) {
     return <Text>Repository is loading</Text>;
   }
