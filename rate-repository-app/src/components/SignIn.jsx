@@ -5,6 +5,7 @@ import Text from "./Text";
 import * as yup from 'yup';
 import useSignIn from "../hooks/useSignIn";
 import { useNavigate } from "react-router";
+import theme from "../theme";
 
 const initialValues = {
   username: '',
@@ -16,19 +17,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
   },
-  button: {
-    backgroundColor: 'blue',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 4,
-    alignItems: 'center',
-    marginTop: 16
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold'
-  }
+  button: theme.button,
+  buttonText: theme.buttonText
 });
 
 const validationSchema = yup.object().shape({

@@ -7,7 +7,8 @@ const theme = {
     textSecondary: '#586069',
     primary: '#363640',
     appBar: 'white',
-    appBackground: '#DCDCDC'
+    appBackground: '#DCDCDC',
+    repositoryBackground: 'white'
   },
   fontSizes: {
     body: 14,
@@ -85,6 +86,19 @@ const theme = {
     height: 10,
     backgroundColor: '#DCDCDC'
   },
+  button: {
+    backgroundColor: 'blue',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 4,
+    alignItems: 'center',
+    marginTop: 16
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold'
+  }
 };
 
 export default theme;
