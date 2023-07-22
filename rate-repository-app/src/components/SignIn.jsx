@@ -40,6 +40,31 @@ const validationSchema = yup.object().shape({
     .required('Password is required')
 });
 
+export const SignInView = ({ onSubmit }) => {
+  return (
+    <View style={styles.container}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+    >
+        {({ handleSubmit, isValid }) => (
+          <>
+            <FormikTextInput name='username' placeholder='Username' />
+            <FormikTextInput secureTextEntry={true} name='password' placeholder='Password' />
+            <Pressable
+              style={styles.button}
+              onPress={() => isValid ? handleSubmit() : null}
+            >
+              <Text testID='signInButton' style={styles.buttonText}>Sign in</Text>
+            </Pressable>
+          </>
+        )}
+    </Formik>
+  </View>
+  );
+};
+
 const SignIn = () => {
   const [signIn, result] = useSignIn();
   const navigate = useNavigate();
@@ -61,26 +86,7 @@ const SignIn = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSignIn}
-        validationSchema={validationSchema}
-      >
-          {({ handleSubmit, isValid }) => (
-            <>
-              <FormikTextInput name='username' placeholder='username' />
-              <FormikTextInput secureTextEntry={true} name='password' placeholder='password' />
-              <Pressable
-                style={styles.button}
-                onPress={() => isValid ? handleSubmit() : null}
-              >
-                <Text style={styles.buttonText}>Sign in</Text>
-              </Pressable>
-            </>
-          )}
-      </Formik>
-    </View>
+    <SignInView onSubmit={handleSignIn} />
   );
 };
 
