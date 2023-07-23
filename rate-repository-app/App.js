@@ -5,6 +5,7 @@ import AuthStorage from "./src/utils/authStorage";
 import AuthStorageContext from "./src/context/AuthStorageContext";
 import Main from './src/components/Main';
 import { StatusBar } from "expo-status-bar";
+import { PaperProvider } from "react-native-paper";
 
 
 const authStorage = new AuthStorage();
@@ -16,7 +17,9 @@ const App = () => {
       <NativeRouter>
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
-            <Main />
+            <PaperProvider>
+              <Main />
+            </PaperProvider>
           </AuthStorageContext.Provider>
         </ApolloProvider>
       </NativeRouter>
