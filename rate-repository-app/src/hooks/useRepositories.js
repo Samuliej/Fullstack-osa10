@@ -1,10 +1,32 @@
 import { useQuery } from '@apollo/client';
 import { GET_REPOSITORIES } from '../graphql/queries';
+import { GET_REPOSITORIES_BY_NAME } from '../graphql/queries';
 
-const useRepositories = (selectedOrder) => {
-  console.log(selectedOrder);
+const useRepositories = (selectedOrder, searchKeyword) => {
   let principle;
   let order;
+
+  if (searchKeyword) {
+    const { data, loading, error } = useQuery(GET_REPOSITORIES_BY_NAME, {
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        searchKeyword: searchKeyword
+      }
+    });
+
+    if (loading) {
+      return { repositories: [] };
+    }
+
+    if (error) {
+      return { repositories: [] };
+    }
+
+    const repositories = data ? data.repositories : [];
+
+    return { repositories };
+  }
+
   if (selectedOrder) {
     switch (selectedOrder) {
       case 'Latest repositories':

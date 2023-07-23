@@ -34,8 +34,25 @@ const REVIEWS = gql`
 `;
 
 export const GET_REPOSITORIES = gql`
-  query GetRepositories($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection) {
-    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
+  query GetRepositories(
+    $orderBy: AllRepositoriesOrderBy,
+    $orderDirection: OrderDirection) {
+    repositories(
+      orderBy: $orderBy,
+      orderDirection: $orderDirection) {
+      edges {
+        node {
+          ...RepositoryDetails
+        }
+      }
+    }
+  }
+  ${REPOSITORY_DETAILS}
+`;
+
+export const GET_REPOSITORIES_BY_NAME = gql`
+    query GetRepositories($searchKeyword: String) {
+    repositories(searchKeyword: $searchKeyword) {
       edges {
         node {
           ...RepositoryDetails
