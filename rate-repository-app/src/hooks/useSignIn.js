@@ -14,7 +14,7 @@ const useSignIn = () => {
       apolloClient.resetStore();
       return result;
     } catch (error) {
-      console.log(error);
+      throw new Error(error.message);
     }
   };
 

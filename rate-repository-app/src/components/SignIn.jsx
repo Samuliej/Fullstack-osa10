@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import useSignIn from "../hooks/useSignIn";
 import { useNavigate } from "react-router";
 import theme from "../theme";
+import { useEffect, useState } from "react";
+import ErrorBanner from "./ErrorBanner";
 
 const initialValues = {
   username: '',
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     paddingTop: 16,
   },
   button: theme.button,
-  buttonText: theme.buttonText
+  buttonText: theme.buttonText,
 });
 
 const validationSchema = yup.object().shape({
@@ -56,8 +58,19 @@ export const SignInView = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const [signIn, result] = useSignIn();
+  const [signIn] = useSignIn();
   const navigate = useNavigate();
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (error) {
+      const timeout = setTimeout(() => {
+        setError(null);
+      }, 10000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [error]);
 
   const handleSignIn = async (values) => {
     const { username, password } = values;
@@ -66,17 +79,22 @@ const SignIn = () => {
        * Using result from useSignIn hook fixed a bug, that when signing in, the AppBar
        * updated correctly but the redirection only happened when pressing sign in the second time.
        */
-      await signIn({ username, password });
-      if (result) {
+      const data = await signIn({ username, password });
+      if (data) {
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      console.log('dsadsa');
+      console.log(error.message);
+      setError(error.message);
     }
   };
 
   return (
-    <SignInView onSubmit={handleSignIn} />
+    <>
+      {error && <ErrorBanner message={error} />}
+      <SignInView onSubmit={handleSignIn} />
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { TextInput as NativeTextInput } from "react-native";
-import theme from "../theme";
-import Text from "./Text";
+import theme from "../../theme";
+import Text from "../Text";
 
 const TextInput = ({ style, error, ...props }) => {
   const textInputStyle = [style, error && { borderColor: 'red' }];

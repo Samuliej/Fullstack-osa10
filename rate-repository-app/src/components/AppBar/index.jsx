@@ -40,6 +40,7 @@ const AppBar = () => {
       await authStorage.removeAccessToken();
       apolloClient.resetStore();
       console.log('signed out successfully');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +50,12 @@ const AppBar = () => {
     <View style={styles.container}>
       <ScrollView horizontal>
         <AppBarTab text='Repositories' onPress={() => navigate('/')} />
-        {!user && <AppBarTab text='Sign in' onPress={() => navigate('/sign-in')} />}
+        {!user && (
+          <>
+            <AppBarTab text='Sign in' onPress={() => navigate('/sign-in')} />
+            <AppBarTab text='Sign up' onPress={() => navigate('/sign-up')} />
+          </>
+        )}
         {user && (
           <>
             <AppBarTab text='Create a review' onPress={() => navigate('/create-review')}/>
