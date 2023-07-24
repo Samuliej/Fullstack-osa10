@@ -121,7 +121,7 @@ const SignUp = () => {
 
   return (
     <>
-      {showError && <ErrorBanner message={error} />}
+      {showError && <ErrorBanner message={error.message} />}
       <SignUpView onSubmit={handleCreateAccount} />
     </>
   );

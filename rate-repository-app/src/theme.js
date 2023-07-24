@@ -37,7 +37,9 @@ const theme = {
     flexDirection: 'row'
   },
   containerItem: {
-    paddingHorizontal: 5
+    width: 'auto',
+    paddingHorizontal: 10,
+    padding: 5
   },
   flexContainer: {
     flexDirection: 'column',

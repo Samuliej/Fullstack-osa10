@@ -15,7 +15,9 @@ const AppBar = () => {
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
   const navigate = useNavigate();
-  const { user } = useGetCurrentUser(false);
+  let user = null;
+  const data = useGetCurrentUser(false);
+  user = data && data.user;
 
   const handleSignOut = async () => {
     try {
