@@ -37,9 +37,9 @@ const theme = {
     flexDirection: 'row'
   },
   containerItem: {
-    width: 'auto',
-    paddingHorizontal: 10,
-    padding: 5
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    padding: 10
   },
   flexContainer: {
     flexDirection: 'column',
@@ -89,7 +89,7 @@ const theme = {
     backgroundColor: '#DCDCDC'
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: '#318CE7',
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 4,
@@ -104,8 +104,8 @@ const theme = {
   platformStyle: {
     color: Platform.select({
       android: 'green',
-      ios: 'blue',
-      default: 'blue'
+      ios: '#318CE7',
+      default: '#318CE7'
     })
   }
 };

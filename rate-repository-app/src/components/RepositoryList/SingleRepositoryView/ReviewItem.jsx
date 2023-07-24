@@ -6,6 +6,8 @@ import Text from "../../Text";
 const styles = StyleSheet.create({
   flexContainer: {
     ...theme.flexContainer,
+    paddingTop: 10,
+    paddingLeft: 7,
     backgroundColor: theme.colors.repositoryBackground,
     flexDirection: 'row', // To align items in a row
     alignItems: 'center', // To vertically center items

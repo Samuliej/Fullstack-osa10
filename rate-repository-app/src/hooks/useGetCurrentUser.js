@@ -5,7 +5,8 @@ const useGetCurrentUser = (includeReviews) => {
   const { data, loading, error } = useQuery(GET_CURRENT_USER, {
     variables: {
       includeReviews: includeReviews
-    }
+    },
+    fetchPolicy: 'cache-and-network',
   });
 
   let user;

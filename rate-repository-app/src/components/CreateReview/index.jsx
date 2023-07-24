@@ -71,6 +71,8 @@ const CreateReview = () => {
 
     try {
       const data = await createReview({...values, rating: rating});
+      console.log('createReview');
+      console.log(data.repositoryId);
       navigate(`/${data.repositoryId}`);
     } catch (error) {
       console.log(error);

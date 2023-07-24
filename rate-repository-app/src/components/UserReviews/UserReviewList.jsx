@@ -1,4 +1,4 @@
-import ReviewItem from "../RepositoryList/SingleRepositoryView/ReviewItem";
+import UserReviewItem from "./UserReviewItem";
 import { View, FlatList, StyleSheet } from "react-native";
 import theme from "../../theme";
 
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 
 const renderItem = ({ item }) => {
   return (
-   <ReviewItem key={item.node.id} review={item} />
+   <UserReviewItem key={item.node.id} review={item} />
   );
  };
 
