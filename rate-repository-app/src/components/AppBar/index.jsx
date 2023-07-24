@@ -1,11 +1,10 @@
 import { View, StyleSheet, ScrollView } from 'react-native';
-import Text from '../Text';
 import AppBarTab from './AppBarTab';
 import theme from '../../theme';
 import { useNavigate } from 'react-router-native';
-import { useApolloClient, useQuery } from '@apollo/client';
-import { ME } from '../../graphql/queries';
+import { useApolloClient } from '@apollo/client';
 import { useAuthStorage } from '../../hooks/useAuthStorage';
+import useGetCurrentUser from '../../hooks/useGetCurrentUser';
 
 const styles = StyleSheet.create({
   container: theme.container
@@ -16,24 +15,7 @@ const AppBar = () => {
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
   const navigate = useNavigate();
-  const { data, loading, error } = useQuery(ME);
-  let user = null;
-
-  if (loading) {
-    return <Text>User loading</Text>;
-  }
-
-  if (error) {
-    return <Text>{error.message}</Text>;
-  }
-
-  if (!loading) {
-    if (data) {
-      user = data.me;
-    }
-  }
-
-  console.log('user', user);
+  const { user } = useGetCurrentUser(false);
 
   const handleSignOut = async () => {
     try {
@@ -59,6 +41,7 @@ const AppBar = () => {
         {user && (
           <>
             <AppBarTab text='Create a review' onPress={() => navigate('/create-review')}/>
+            <AppBarTab text='My reviews' onPress={() => navigate('/my-reviews')}/>
             <AppBarTab text='Sign out' onPress={handleSignOut}/>
           </>
 
