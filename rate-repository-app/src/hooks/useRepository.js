@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { GET_REPOSITORY } from "../graphql/queries";
 
-const useRepository = (id) => {
-  const { loading, error, data } = useQuery(GET_REPOSITORY, {
-    variables: { repositoryId: id },
-    fetchPolicy: 'cache-and-network'
+const useRepository = (id, first) => {
+  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORY, {
+    variables: { repositoryId: id, first: first },
+    fetchPolicy: 'cache-and-network',
   });
 
   if (loading) {
@@ -17,12 +17,25 @@ const useRepository = (id) => {
 
   // Check if data exists before accessing its properties
   if (!data || !data.repository) {
-    return { error: { message: "Repository data not found" } };
+    throw new Error('Repository data not found');
   }
 
-  const { repository } = data;
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage;
 
-  return { data: repository };
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repository.reviews.pageInfo.endCursor,
+      }
+    });
+  };
+
+  const { repository } = data;
+  return { repository, loading, error, fetchMore: handleFetchMore };
 };
 
 export default useRepository;

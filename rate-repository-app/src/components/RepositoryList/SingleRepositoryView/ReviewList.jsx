@@ -15,8 +15,8 @@ const renderItem = ({ item }) => {
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const ReviewList = ({ repository }) => {
-  const reviews = repository.data.reviews.edges;
+const ReviewList = ({ repository, onEndReach }) => {
+  const reviews = repository.reviews.edges;
   return (
     <View>
       <FlatList
@@ -24,7 +24,9 @@ const ReviewList = ({ repository }) => {
         ItemSeparatorComponent={ItemSeparator}
         renderItem={renderItem}
         keyExtractor={({ node }) => node.id}
-        ListHeaderComponent={<View style={{ marginBottom: 10 }}><RepositoryItem item={repository.data} /></View>}
+        ListHeaderComponent={<View style={{ marginBottom: 10 }}><RepositoryItem item={repository} /></View>}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     </View>
   );

@@ -18,13 +18,18 @@ const SearchBar = ({ keyword, onChangeSearch }) => {
 
 const RepositoryList = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
-  const [keyword, setKeyword] = useState(null);
+  const [keyword, setKeyword] = useState('');
   const [debouncedKey] = useDebounce(keyword);
-  const { repositories } = useRepositories(selectedOrder, debouncedKey);
+  const first = 7;
+  const { repositories, fetchMore } = useRepositories(selectedOrder, debouncedKey, first);
   const navigate = useNavigate();
 
   const handleOrderChange = value => setSelectedOrder(value);
   const onChangeSearch = query => setKeyword(query);
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   /**
    * I don't know why, but I can't pass just repositories,
@@ -38,6 +43,7 @@ const RepositoryList = () => {
           onOrderChange={handleOrderChange}
           repositories={repositories.edges}
           navigate={navigate}
+          onEndReach={onEndReach}
         />
     </>
     );

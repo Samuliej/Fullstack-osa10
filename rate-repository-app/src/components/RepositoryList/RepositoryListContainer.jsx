@@ -25,7 +25,7 @@ const renderItem = ({ item, navigate }) => {
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ selectedOrder, onOrderChange, repositories, navigate }) => {
+export const RepositoryListContainer = ({ onEndReach, selectedOrder, onOrderChange, repositories, navigate }) => {
   const respositoryNodes = repositories
   ? repositories.map((edge) => edge.node)
   : [];
@@ -36,6 +36,8 @@ export const RepositoryListContainer = ({ selectedOrder, onOrderChange, reposito
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <Item renderItem={renderItem} item={item} navigate={navigate} />}
       ListHeaderComponent={<OrderSelector selectedOrder={selectedOrder} onOrderChange={onOrderChange} />}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 };

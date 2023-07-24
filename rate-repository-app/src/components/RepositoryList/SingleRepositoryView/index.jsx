@@ -20,24 +20,30 @@ const styles = StyleSheet.create({
 
 const SingleRepositoryView = () => {
   const { id } = useParams();
-  const repository = useRepository(id);
+  const first = 4;
+  const { repository, fetchMore, loading, error } = useRepository(id, first);
 
-  if (repository.loading) {
+  if (loading) {
     return <Text>Repository is loading</Text>;
   }
 
-  if (repository.error) {
-    return <Text>Error: {repository.error.message}</Text>;
+  if (error) {
+    return <Text>Error: {error.message}</Text>;
   }
 
-  if (!repository.data) {
+  if (!repository) {
     return <Text>Repository data not found</Text>;
   }
+
+  const onEndReach = () => {
+    console.log('loppu');
+    fetchMore();
+  };
 
   return (
     <View style={styles.container}>
       <View>
-        <ReviewList repository={repository}/>
+        <ReviewList onEndReach={onEndReach} repository={repository}/>
       </View>
     </View>
   );

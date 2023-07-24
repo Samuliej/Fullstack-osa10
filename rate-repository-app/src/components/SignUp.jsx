@@ -91,8 +91,6 @@ const SignUp = () => {
   const handleCreateAccount = async (values) => {
     const { username, password } = values;
 
-    console.log(values);
-
     try {
       const data = await createUser({
         username: username, password: password
